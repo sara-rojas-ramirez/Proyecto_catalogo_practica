@@ -1,7 +1,8 @@
 from django.contrib import admin
-from .models import Categoria, Producto #Importar los modelos
+from .models import Proveedor, Categoria, Producto 
 
-# Register your models here.
+# Registrar los modelos en el admin
 
+admin.site.register(Proveedor)
 admin.site.register(Categoria)
 admin.site.register(Producto)

@@ -2,23 +2,12 @@ from django.db import models
 
 # Create your models here.
 
-# Tabla cliente
-class Cliente(models.Model):
-    nombre = models.CharField(max_length=50)
-    apellido = models.CharField(max_length=50)
-    email = models.EmailField(unique=True)
-    telefono = models.CharField(max_length=20)
-
-    def __str__(self):
-        return f"{self.nombre} {self.apellido}"
-    
-
 # Tabla proveedor
 class Proveedor(models.Model):
-    nombre = models.CharField(max_length=50)
+    nombre = models.CharField(max_length=50, unique=True)
     direccion = models.CharField(max_length=100)
     telefono = models.CharField(max_length=20)
-    correo = models.EmailField()
+    correo = models.EmailField(unique=True)
     tipo_producto = models.CharField(max_length=50)
 
     def __str__(self):
@@ -28,7 +17,7 @@ class Proveedor(models.Model):
 
 # Tabla categoria
 class Categoria(models.Model):
-    nombre = models.CharField(max_length=50)
+    nombre = models.CharField(max_length=50, unique=True)
     descripcion = models.TextField()
 
     def __str__(self):
@@ -38,10 +27,11 @@ class Categoria(models.Model):
 
 # Tabla producto
 class Producto(models.Model):
+    codigo = models.CharField(max_length=30, unique=True, blank=True)
     nombre = models.CharField(max_length=50)
     descripcion = models.TextField()
     precio = models.DecimalField(max_digits=10, decimal_places=2)
-    stock = models.IntegerField()
+    stock = models.PositiveBigIntegerField()
 
     categoria = models.ForeignKey(
         Categoria,
@@ -52,7 +42,9 @@ class Producto(models.Model):
     proveedor = models.ForeignKey(
         Proveedor,
         on_delete= models.CASCADE,
-        related_name='productos'
+        related_name='productos',
+        null=True,
+        blank=True
     )
 
     def __str__(self):
@@ -60,47 +52,5 @@ class Producto(models.Model):
 
 
 
-# Tabla pedido
-class Pedido(models.Model):
-    fecha = models.DateField()
-    total = models.DecimalField(max_digits=10, decimal_places=2)
-    
-    TIPO_ESTADO = {
-        "Pendiente": "Pendiente",
-        "Cancelado": "Cancelado",
-        "Pagado": "Pagado",
-        "Enviado": "Enviado",
-        "Entregado": "Entregado"
-    }
 
-    estado = models.CharField(max_length=1, choices=TIPO_ESTADO)
-    cliente = models.ForeignKey(
-        Cliente,
-        on_delete=models.CASCADE,
-        related_name='Pedidos'
-    )
-
-    def __str__(self):
-        return f"Pedido #{self.id}"
-
-
-# Tabla intermedia (Detalle_pedido)
-class Detalle_pedido(models.Model):
-    cantidad = models.IntegerField()
-    precio_unitario = models.DecimalField(max_digits=10, decimal_places=2)
-
-    pedido = models.ForeignKey(
-        Pedido,
-        on_delete=models.CASCADE,
-        related_name='detalles'
-    )
-
-    producto = models.ForeignKey(
-        Producto,
-        on_delete=models.CASCADE,
-        related_name='detalles'
-    )
-
-    def __str__(self):
-        return f"Detalle {self.id}"
 

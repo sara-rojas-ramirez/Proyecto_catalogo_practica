@@ -1,8 +1,16 @@
-# from django.shortcuts import render
-from django.http import HttpResponse
 
-# Create your views here.
+from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from .models import Producto
 
-def saludar(request):
-    return HttpResponse("Catalogo")
+# Creación de la vista de catalogo
+
+# Vista privada del catalogo
+@login_required
+def catalogo_view(request):
+    productos = Producto.objects.all()
+
+    return render(request, 'catalogo/index.html', {
+        'productos': productos
+    })
     

@@ -1,0 +1,78 @@
+<!--html del carrito-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Carrito</title>
+</head>
+<body>
+    <h1>Mi Carrito</h1>
+
+    <a href="{% url 'catalogo' %}">
+    Seguir comprando
+    </a>
+
+    {% if items %}
+        <table border="1" cellpadding="10">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Subtotal</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                <tr>
+                    <td>{{ item.producto.nombre }}</td>
+                    <td>${{ item.producto.precio }}</td>
+
+                    <td>
+                        <form method="POST" action="{% url 'actualizar_carrito' item.id %}">
+                            {% csrf_token %}
+                            <input 
+                                type="number" 
+                                name="cantidad" 
+                                value="{{ item.cantidad }}" 
+                                min="0"
+                            >
+                            <button type="submit">Actualizar</button>
+                        </form>
+                    </td>
+
+                    <td>
+                        ${{ item.subtotal }} 
+                    </td>
+
+                    <td>
+                        <a href="{% url 'eliminar_producto' item.id %}">
+                            Eliminar
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h3>Total: ${{ total }}</h3>
+
+        <br>
+
+        <a href="{% url 'vaciar_carrito' %}">
+            Vaciar carrito
+        </a>
+
+        <br><br>
+
+        <a href="{% url 'checkout' %}">
+            Finalizar compra
+        </a>
+
+    {% else %}
+        <p>Tu carrito está vacío.</p>
+    {% endif %}
+
+</body>
+</html>

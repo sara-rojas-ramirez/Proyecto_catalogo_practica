@@ -1,0 +1,48 @@
+
+# ACTORES
+# CLIENTE (login - ve catalogo - agrega productos al carrito - modifica cantidades - confirma pedido - ver resumen del pedido)
+
+# ADMIN (login - ve dashboard - gestiona inventario - ve pedidos - cambia estados)
+
+
+# IMPORTACIONS BASICAS USADAS
+1. render y redirect: Se usan para mostrar plantillas HTML o redirigir al usuario a otra URL.
+2. authenticate, login y logout: Son funciones nativas de Django que sirven para verificar si la contraseña es correcta, crear sesión y destruirla. 
+3. Loginform: Un formulario personalizado (que se crea en un form.py) para pedir username y password.
+
+
+
+# Migraciones
+Solo se realizan migraciones cuando se cambia la estructura del modelo. Se realiza makemigrations y migrate.
+Cuando se hacen registros, no es necesario migrar.
+
+
+# Estructura del proyecto (Separación de responsabilidades)
+Se crearon los modulos (accounts, clientes, catalogo y pedidos), cada uno cuenta con sus respectivos modelos. 
+
+---> accounts: Se encargara del login, logout, registro, auntenticación y roles (a futuro), se uso el sistema auth de Django
+
+---> clientes: Para guardar información extra del cliente. Donde user tiene una relación 1 a 1 con cliente
+
+---> catalogo: Se encarga de administrar productos, agrupar los productos por medio de categoria y mostrar el proveedor. 
+
+---> pedidos: Contiene el carrito para guardar temporalmente los productos antes de comprar, con item_carrito para mostrar info de cada producto. Incluye ademas pedido para relacionar cliente y detalle_pedido para relacionar productos. 
+
+
+
+# Ruta para accounts
+1. Crear la estructura de accounts con views, urls, forms, templates, models, etc-
+2. Crear el formulario del login en forms.py 
+3. Ir a views.py y crear la logica de login y logout
+4. Crear template sencillo del login (uso de csrf_token necesario)
+5. Definir las URLS del modulo en ulrs.py 
+6. Conectar esas urls con las URLS principales del sistema
+7. Configurar los redirects globales
+
+
+
+# redirects globales
+
+
+# vistas privadas
+Son las vistas que solo los usuarios logueados pueden ver. Por ejemplo, lo que es público es login. Van arriba de cada app, encima de la función que se quiere proteger

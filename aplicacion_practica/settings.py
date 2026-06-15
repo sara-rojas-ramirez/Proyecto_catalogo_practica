@@ -37,7 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'catalogo'
+    'catalogo',
+    'accounts',
+    'pedidos',
+    'clientes',
+    'carrito'
 ]
 
 MIDDLEWARE = [
@@ -76,9 +80,9 @@ WSGI_APPLICATION = 'aplicacion_practica.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'catalogo_sistema_practica',
-        'USER': 'sararojas',
-        'PASSWORD': 'estaeslacontra',
+        'NAME': 'inventario_sistema_practica',
+        'USER': 'root',
+        'PASSWORD': '4537',
         'HOST': 'localhost',
         'PORT': '3306'
     }
@@ -120,3 +124,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+
+# Redirects globales
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'login'
+LOGOUT_REDIRECT_URL = 'login'
+
+
