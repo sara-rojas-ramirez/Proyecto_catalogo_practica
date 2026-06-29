@@ -14,6 +14,7 @@
 2. Agregar validaciones para los formularios con JS y ajax.
 3. Agregar imagenes precargadas para los productos. (YA SE REALIZO LA FUNCIONALIDAD Y LAS IMAGENES SE GUARDAN AUTOMATICAMENTE EN LA CARPETA MEDIA/ AL MOMENTO DE AGREGAR LA IMAGEN POR MEDIO DE ADMIN DJANGO)
 4. Agregar los datos de barrios y municipios segun departamentos. (SE CREO UN ARCHIVO JSON Y UN ARCHIVO CARGAR_GEO.PY PARA CARGAR ESE ARCHIVO JSON)
+5. Generar la funcionalidad para tarifa del domicilio por municipio, entonces agregar tarifa en el modelo municipio
 
 
 # PRIORIDAD BAJA
