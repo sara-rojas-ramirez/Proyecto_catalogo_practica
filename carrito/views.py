@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from catalogo.models import Producto
 from .models import Carrito, Item_carrito
-from pedidos.models import Pedido, Detalle_pedido
+
 
 
 # Vista y funcionalidad para ver carrito
@@ -106,33 +106,33 @@ def vaciar_carrito(request):
 
 
 
-# Funcionalidad checkout
-@login_required
-def checkout(request):
-    cliente = request.user.cliente
-    carrito = get_object_or_404(Carrito, cliente = cliente)
+# # Funcionalidad checkout
+# @login_required
+# def checkout(request):
+#     cliente = request.user.cliente
+#     carrito = get_object_or_404(Carrito, cliente = cliente)
 
-    items = carrito.item_carrito_set.all()
+#     items = carrito.item_carrito_set.all()
 
-    if not items.exists():
-        return redirect("ver_carrito")
+#     if not items.exists():
+#         return redirect("ver_carrito")
     
-    pedido = Pedido.objects.create(
-        cliente = cliente,
-        estado = "Pendiente"
-    )
+#     pedido = Pedido.objects.create(
+#         cliente = cliente,
+#         estado = "Pendiente"
+#     )
 
-    for item in items:
-        Detalle_pedido.objects.create(
-            pedido = pedido,
-            producto = item.producto,
-            cantidad = item.cantidad,
-            precio_unitario = item.producto.precio
-        )
+#     for item in items:
+#         Detalle_pedido.objects.create(
+#             pedido = pedido,
+#             producto = item.producto,
+#             cantidad = item.cantidad,
+#             precio_unitario = item.producto.precio
+#         )
     
-    items.delete()
+#     items.delete()
 
-    return redirect("ver_carrito")
+#     return redirect("ver_carrito")
 
 
 

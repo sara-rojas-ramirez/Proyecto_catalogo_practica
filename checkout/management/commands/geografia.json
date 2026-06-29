@@ -1,0 +1,162 @@
+{
+  "Risaralda": {
+    "Pereira": [
+      "Centro",
+      "Cuba",
+      "Álamos",
+      "Villa Verde",
+      "El Poblado",
+      "Boston"
+    ],
+    "Dosquebradas": [
+      "El Japón",
+      "Frailes",
+      "Santa Mónica",
+      "Campestre A",
+      "Valher"
+    ],
+    "Santa Rosa de Cabal": [
+      "Centro",
+      "La Hermosa",
+      "Boston",
+      "San Vicente"
+    ],
+    "La Virginia": [
+      "Centro",
+      "El Progreso",
+      "La Playa"
+    ],
+    "Belén de Umbría": [
+      "Centro",
+      "Buenos Aires",
+      "La Plazuela"
+    ],
+    "Apía": [
+      "Centro",
+      "La Floresta",
+      "San Daniel"
+    ],
+    "Balboa": [
+      "Centro",
+      "Las Brisas"
+    ],
+    "Guática": [
+      "Centro",
+      "La Independencia"
+    ],
+    "La Celia": [
+      "Centro",
+      "San José"
+    ],
+    "Marsella": [
+      "Centro",
+      "Sucre"
+    ],
+    "Mistrató": [
+      "Centro",
+      "La Planta"
+    ],
+    "Pueblo Rico": [
+      "Centro",
+      "Simón Bolívar"
+    ],
+    "Quinchía": [
+      "Centro",
+      "Guayabal"
+    ],
+    "Santuario": [
+      "Centro",
+      "Popular"
+    ]
+  },
+
+  "Caldas": {
+    "Manizales": [
+      "Chipre",
+      "Palermo",
+      "La Enea",
+      "Centro",
+      "Milán"
+    ],
+    "Villamaría": [
+      "Centro",
+      "La Pradera",
+      "Los Molinos"
+    ],
+    "Chinchiná": [
+      "Centro",
+      "Versalles",
+      "El Trébol"
+    ],
+    "Anserma": [
+      "Centro",
+      "Occidente"
+    ],
+    "La Dorada": [
+      "Centro",
+      "Las Ferias",
+      "Concordia"
+    ],
+    "Riosucio": [
+      "Centro",
+      "San Sebastián"
+    ],
+    "Salamina": [
+      "Centro",
+      "El Bosque"
+    ]
+  },
+
+  "Quindio": {
+    "Armenia": [
+      "Centro",
+      "La Castellana",
+      "Mercedes del Norte",
+      "Granada",
+      "Coinca"
+    ],
+    "Calarcá": [
+      "Centro",
+      "Versalles",
+      "Gaitán"
+    ],
+    "Montenegro": [
+      "Centro",
+      "Pueblo Tapao",
+      "La Isabela"
+    ],
+    "Quimbaya": [
+      "Centro",
+      "Buenavista",
+      "Obrero"
+    ],
+    "Circasia": [
+      "Centro",
+      "Camilo Duque"
+    ],
+    "La Tebaida": [
+      "Centro",
+      "Ciudad Jardín"
+    ],
+    "Filandia": [
+      "Centro",
+      "San José"
+    ],
+    "Salento": [
+      "Centro",
+      "Boquerón"
+    ],
+    "Buenavista": [
+      "Centro"
+    ],
+    "Córdoba": [
+      "Centro"
+    ],
+    "Génova": [
+      "Centro"
+    ],
+    "Pijao": [
+      "Centro"
+    ]
+  }
+}

@@ -1,9 +1,9 @@
 from django.db import models
 from catalogo.models import Producto
 from clientes.models import Cliente
+from checkout.models import Checkout
 
 # Modelos según el módulo de pedidos  
-
 # Tabla pedido
 class Pedido(models.Model):
 
@@ -11,6 +11,14 @@ class Pedido(models.Model):
         Cliente,
         on_delete=models.CASCADE,
         related_name='pedidos'
+    )
+
+    checkout = models.OneToOneField(
+        Checkout,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='pedido'
     )
 
     fecha = models.DateTimeField(auto_now_add=True)
@@ -38,6 +46,7 @@ class Pedido(models.Model):
 
 
 
+
 # Tabla intermedia (Detalle_pedido)
 class Detalle_pedido(models.Model):
     pedido = models.ForeignKey(
@@ -52,7 +61,7 @@ class Detalle_pedido(models.Model):
         related_name='detalles'
     )
 
-    cantidad = models.PositiveBigIntegerField()
+    cantidad = models.PositiveIntegerField()
     precio_unitario = models.DecimalField(max_digits=10, decimal_places=2, editable=False)
     
     @property

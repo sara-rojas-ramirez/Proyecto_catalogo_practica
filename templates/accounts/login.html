@@ -1,0 +1,62 @@
+{% extends "base_auth.html" %}
+
+{% load static %}
+
+{% block content %}
+<div class="container-fluid vh-100">
+    <div class="row h-100">
+        
+        <!-- COLUMNA IZQUIERDA: IMAGEN 50% -->
+        <div class="col-md-6 d-none d-md-block p-0">
+            <img src="/static/images/fondoInicial.png" 
+                 alt="Flyer inicial"
+                 class="w-100 h-100" 
+                 style="object-fit: cover;">
+        </div>
+
+        <!-- COLUMNA DERECHA: FORMULARIO 50% -->
+        <div class="col-12 col-md-6 d-flex align-items-center justify-content-center">
+            <div class="card shadow p-4 w-100" style="max-width: 450px;">
+                <h1 class="text-center mb-4 titulos-accounts">Inicia sesión</h1>
+
+                <!--Contenedor del formulario de login -->
+                <!-- Recibe url de la vista de ajax_login -->
+                <form method="POST" class="card-body contenedor-accounts-form">
+                    {% csrf_token %}
+
+                    {% comment %} <span id="error-global" style="color: #D9534F; font-size: 0.9rem; display: block; margin-bottom: 15px; text-align: center;"></span> {% endcomment %}
+
+                    <!--Contenedor del campo usuario -->
+                    <div class="mb-4">
+                        <label class="form-label">Usuario*</label>
+                        {{ form.username }}
+                    </div>
+
+
+                    <!--Contenedor del campo contraseña -->
+                    <div class="mb-4">
+                        <label class="form-label">Contraseña*</label>
+                        {{ form.password }}
+                    </div>
+                    
+                    <!--Boton de inicio sesion -->
+                    <button class="btn btn-success w-100" type="submit">Iniciar sesión</button>
+                </form>
+
+                <div class="text-center mt-3">
+                    <small>¿Aún no tienes una cuenta? <a href="{% url 'registro' %}">Crea tu cuenta</a></small>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Script que carga los archivos JS -->
+{% comment %} <script src="{% static 'js/validaciones_login.js' %}?v=1.1"></script> {% endcomment %}
+
+{% endblock %}
+
+
+
+

@@ -1,8 +1,33 @@
 
+# Falta:
+# PRIORIDAD ALTA
+1. Arreglar el error de ingresar como administrador en el login. (SE CREO GESTION-ADMIN Y SE REDIRIGE ALLI)
+2. Arreglar el boton de agregar producto, para que no redireccione a carrito, solo que agregue.
+3. Registrar los modelos del checkout en admin. (SE REALIZO)
+4. Habilitar los filtros en catalogo para filtrar por categoria. (SE AÑADIERON FILTROS BASICOS POR CATEGORIA)
+5. Mejorar el formulario de checkout
+6. Hacer la ventana modal o vista agradada del producto (SE REALIZO LA VISTA AGRANDADA)
+7. Hacer el perfil de cliente para ver su historial de pedidos y estados. 
+
+# PRIORIDAD MEDIA
+1. Agregar las opciones de departamento, municipio y barrio en cascada para formulario de compra (YA SE CREO CON FUNCIONALIDAD AJAX)
+2. Agregar validaciones para los formularios con JS y ajax.
+3. Agregar imagenes precargadas para los productos. (YA SE REALIZO LA FUNCIONALIDAD Y LAS IMAGENES SE GUARDAN AUTOMATICAMENTE EN LA CARPETA MEDIA/ AL MOMENTO DE AGREGAR LA IMAGEN POR MEDIO DE ADMIN DJANGO)
+4. Agregar los datos de barrios y municipios segun departamentos. (SE CREO UN ARCHIVO JSON Y UN ARCHIVO CARGAR_GEO.PY PARA CARGAR ESE ARCHIVO JSON)
+
+
+# PRIORIDAD BAJA
+1. Mejorar los estilos generales, agregar css tambien
+2. Mejorar el estilo de los formularios
+3. Comentar el codigo y legibilidad en variables y sintaxis
+
+
+
+
 # ACTORES
 # CLIENTE (login - ve catalogo - agrega productos al carrito - modifica cantidades - confirma pedido - ver resumen del pedido)
 
-# ADMIN (login - ve dashboard - gestiona inventario - ve pedidos - cambia estados)
+# STAFF (login - ve dashboard - gestiona inventario - ve pedidos - cambia estados) (Panel personalizado para gestión)
 
 
 # IMPORTACIONS BASICAS USADAS
@@ -12,25 +37,31 @@
 
 
 
-# Migraciones
+# MIGRACIONES
 Solo se realizan migraciones cuando se cambia la estructura del modelo. Se realiza makemigrations y migrate.
 Cuando se hacen registros, no es necesario migrar.
 
 
-# Estructura del proyecto (Separación de responsabilidades)
-Se crearon los modulos (accounts, clientes, catalogo y pedidos), cada uno cuenta con sus respectivos modelos. 
-
----> accounts: Se encargara del login, logout, registro, auntenticación y roles (a futuro), se uso el sistema auth de Django
+# ESTRUCTURA DEL PROYECTO (Separación de responsabilidades)
+---> accounts: Se encargara del login, logout, registro, auntenticación y roles.
 
 ---> clientes: Para guardar información extra del cliente. Donde user tiene una relación 1 a 1 con cliente
 
 ---> catalogo: Se encarga de administrar productos, agrupar los productos por medio de categoria y mostrar el proveedor. 
 
----> pedidos: Contiene el carrito para guardar temporalmente los productos antes de comprar, con item_carrito para mostrar info de cada producto. Incluye ademas pedido para relacionar cliente y detalle_pedido para relacionar productos. 
+---> carrito: Contiene el carrito para guardar temporalmente los productos antes de comprar, con item_carrito para mostrar info de cada producto y las operaciones CRUD basicas. 
+
+---> checkout: Se encarga de mostrar resumen, formulario de envio, simular pago y confirmación de pago exitoso. 
+
+---> pedido: Pedidos ya creados, entonces, tiene los modelos pedido y detalle_pedido, las vistas de historial del cliente y detalle_pedido. 
+
+---> static: Aqui van los archivos fijos del diseño. Como por ejemplo, el logo, donde de la pagina, styles o iconos. 
+
+---> media: En esta carpeta es donde se guardan automaticamente las imagenes que el usuario o admin en este caso, suba por medio del modelo de Producto, a traves de upload_to = productos/
 
 
 
-# Ruta para accounts
+# RUTA DE CONEXIÓN
 1. Crear la estructura de accounts con views, urls, forms, templates, models, etc-
 2. Crear el formulario del login en forms.py 
 3. Ir a views.py y crear la logica de login y logout
@@ -40,9 +71,23 @@ Se crearon los modulos (accounts, clientes, catalogo y pedidos), cada uno cuenta
 7. Configurar los redirects globales
 
 
+# CLASS META
+Para agregar metadatos a los modelos. Es decir, permite definir opciones como el nombre de table, etc.  
 
-# redirects globales
+
+# REDIRECTS GLOBALES
 
 
-# vistas privadas
+# VISTAS PRIVADAS
 Son las vistas que solo los usuarios logueados pueden ver. Por ejemplo, lo que es público es login. Van arriba de cada app, encima de la función que se quiere proteger
+
+
+# USO DE BOOSTRAP
+Funciona a traves de clases 
+
+
+# USO DE AJAX 
+Permite interactividad sin refresh. En otras palabras, es una tecnica para que una pagina web envie y reciba datos del servidor sin recargarse completa. Combina el uso de JavaScript, XMLHttpRequest, HTML y CSS, y uso de DOM. 
+
+# LIBRERIA PILLOW
+Es necesario instalar esta libreria para que django pueda procesar las imagenes. pip install pillow

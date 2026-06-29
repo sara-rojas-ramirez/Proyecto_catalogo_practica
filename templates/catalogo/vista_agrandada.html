@@ -1,0 +1,35 @@
+
+{% extends 'base.html' %} 
+
+{% block content %}
+<div class="container" style="margin-top: 40px;"> <a href="{% url 'catalogo' %}" class="btn-volver">← Volver al catálogo</a>
+
+    <div class="contenedor-agrandada">
+        
+        <div class="columna-imagen">
+            {% if producto.imagen %}
+                <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}">
+            {% else %}
+                <p>Sin imagen</p>
+            {% endif %}
+        </div>
+        
+        <div class="columna-info">
+            <span class="badge-categoria">{{ producto.categoria.nombre }}</span>
+            <h3 class="">{{ producto.proveedor }}</h3>
+            <h1 class="titulo-agrandado">{{ producto.nombre }}</h1>
+            <h2 class="precio-agrandado">${{ producto.precio }}</h2>
+            
+            <div class="descripcion-agrandada">
+                <p>{{ producto.descripcion }}</p>
+            </div>
+            
+            <form action="{% url 'agregar_producto' producto.id %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn-comprar-agrandado">Añadir al carrito</button>
+            </form>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

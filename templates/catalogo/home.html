@@ -1,0 +1,85 @@
+<!--Estructura html del catalogo-->
+<!-- Flujo: catalogo - click logout - sesion cerrada - login -->
+
+
+{% extends "base.html" %}
+
+{% block content %}
+    <!-- Contenedor del banner -->
+    <div class="banner-catalogo mb-5">
+        <img src="/static/images/Banner.png" alt="Banner catálogo" class="img-fluid w-100 banner-img">
+    </div>
+
+    <!-- Contenedor de los filtros -->
+    <div class = "filtros-container">
+        <div class="filtros-botones">
+            <a href="{% url 'catalogo' %}" class="btn btn-secondary btn-sm">Todas</a>
+
+            {% for categoria in categorias %}
+                <a href="?categoria={{ categoria.id }}"
+                class="btn {% if categoria_activa|add:'' == categoria.id|stringformat:'s' %}btn-primary{% else %}btn-outline-primary{% endif %} btn-sm">
+                    {{ categoria.nombre }}
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+
+
+    <!-- Contenedor principal -->
+    <div class="container mt-4 contenedor-catalogo">
+        <h1 class="text-center mb-5 titulos-accounts">Catálogo de productos</h1>
+
+        <!-- Contenedor de productos -->
+        <div class="row g-4">
+            <!-- Ciclo for para mostrar los productos -->
+            {% for producto in productos %}
+                <div class="col-md-6 col-lg-3">
+
+                    <!-- Contenedor de cada producto -->
+                    <a href = "{% url 'vista_agrandada' producto.id %}" class = "enlance-agrandada">
+                        <div class="card h-100 shadow card-producto">
+
+                            <!-- Espacio para imagen -->
+                             {% if producto.imagen %}
+                                <div class ="contenedor-imagen">
+                                    <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}">
+                                </div>
+                            {% else %}
+                                <div class="contenedor-imagen">
+                                    <img src="https://placehold.co/300x200" class="img-fluid" alt="{{ producto.nombre }}">
+                                </div>
+                            {% endif %}
+
+
+                            <!-- Contenedor de informacion del producto -->
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">{{ producto.nombre }}</h5>
+
+                                <p class="precio-producto">${{ producto.precio }}</p>
+
+                                <p class="card-text">{{ producto.descripcion }}</p>
+
+                                <!-- Condicionales para agregar producto al carrito -->
+                                {% if producto.stock > 0 %}
+                                    <form method="POST" action="{% url 'agregar_producto' producto.id %}" class="mt-auto">
+                                        {% csrf_token %}
+                                        <button class="btn btn-success w-100" type="submit">Agregar al carrito</button>
+                                    </form>
+                                {% else %}
+                                    <p class="text-danger fw-bold mt-auto">Producto agotado</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+            <!-- En caso de que no haya ningun producto registrado -->
+            {% empty %}
+                <p>No hay productos registrados.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
+
+

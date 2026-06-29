@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="contenedor-pedido">
+
+        <!-- Header -->
+        <div class="header-pedido">
+            <h1 class="titulo-pedido">Resumen del Pedido</h1>
+            <a href="{% url 'catalogo' %}" class="btn btn-regresar">
+                Seguir comprando
+            </a>
+        </div>
+
+        <!-- Información horizontal -->
+        <div class="info-pedido-grid">
+            <div class="card-info-pedido">
+                <small>Pedido</small>
+                <h5>#{{ pedido.id }}</h5>
+            </div>
+
+            <div class="card-info-pedido">
+                <small>Fecha</small>
+                <h5>{{ pedido.fecha|date:"d/m/Y g:i a" }}</h5>
+            </div>
+
+            <div class="card-info-pedido">
+                <small>Estado</small>
+                <h5>
+                    <span class="badge-estado">
+                        {{ pedido.estado }}
+                    </span>
+                </h5>
+            </div>
+
+            <div class="card-info-pedido">
+                <small>Total Pagado</small>
+                <h5>${{ pedido.total }}</h5>
+            </div>
+        </div>
+
+        <!-- Dirección -->
+        <div class="card-direccion">
+            <h4>Dirección de Envío</h4>
+
+            {% if pedido.checkout %}
+                <p>
+                    <strong>Departamento:</strong> {{ pedido.checkout.departamento.nombre }}
+                </p>
+                <p>
+                    <strong>Municipio:</strong> {{ pedido.checkout.municipio.nombre }}
+                </p>
+                <p>
+                    <strong>Barrio o Sector:</strong> {{ pedido.checkout.barrio.nombre }}
+                </p>
+                <p>
+                    <strong>Dirección:</strong> {{ pedido.checkout.direccion }}
+                </p>
+            {% else %}
+                <p class="text-muted">No se registró información de envío.</p>
+            {% endif %}
+        </div>
+
+        <!-- Productos -->
+        <div class="productos-box">
+            <h4 class="mb-4" style="color:#008000; font-weight:700;">
+                Productos Comprados
+            </h4>
+
+            {% for detalle in detalles %}
+            <div class="producto-resumen">
+                <div class="producto-info">
+                    <h6>{{ detalle.producto.nombre }}</h6>
+                    <small>Cantidad: {{ detalle.cantidad }}</small>
+                </div>
+
+                <div class="producto-precio">
+                    ${{ detalle.subtotal }}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Total final -->
+        <div class="total-pedido-box">
+            <h4>Total Final</h4>
+            <h3>${{ pedido.total }}</h3>
+        </div>
+
+        <!-- Mensaje de éxito -->
+        <div class="alerta-exito">
+            <h5>
+                <i class="bi bi-check-circle-fill"></i>
+                ¡Pago Exitoso!
+            </h5>
+            <p>
+                Tu compra fue registrada correctamente y el pago ha sido procesado con éxito.
+            </p>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,673 @@
+
+/* --------- Fondo general */
+body {
+    min-height: 100vh;
+    background-color: #EAEAEA;
+}
+
+/* --------- Estilos del Navbar */
+.navbar-custom {
+    background-color: #FFFFFF;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+/* Estilos del logo */
+.brand-custom {
+    color: #008000 !important;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.brand-custom:hover {
+    color: #006600 !important;
+}
+
+/* Estilos para el botón carrito */
+.btn-carrito {
+    background-color: #F4C542;
+    color: black;
+    font-weight: 600;
+    padding: 10px 18px;
+    border-radius: 10px;
+}
+
+
+/* Estilos para el botón logout */
+.btn-logout {
+    border: 2px solid #008000;
+    color: #008000;
+    font-weight: 600;
+    padding: 10px 18px;
+    border-radius: 10px;
+}
+
+.btn-logout:hover {
+    background-color: #A8D08D;
+}
+
+
+
+/* ------------ Estilos de los contenedores de accounts */
+.titulos-accounts{
+    color: #008000; 
+    font-size: 2.5rem; 
+    font-weight: 700;
+}
+
+.contenedor-accounts-form{
+    display: flex;
+    flex-direction: column;
+    font-weight: 600;
+}
+
+
+/* ------------ Estilos del catalogo (banner) */
+.banner-catalogo {
+    width: 100%;
+}
+
+.banner-img {
+    width: 100%;
+    display: block;
+}
+
+/* ------------ Estilos de los filtros */
+.filtros-container {
+    text-align: center;
+    margin: 20px auto;
+    padding: 15px;
+}
+
+.filtros-botones {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.filtros-botones .btn {
+    border-radius: 20px;
+    padding: 5px 12px;
+    transition: 0.2s ease-in-out;
+    font-size: 20px;
+}
+
+.filtros-botones .btn:hover {
+    transform: scale(1.05);
+}
+
+
+
+/* Contenedor general del catálogo */
+.contenedor-catalogo {
+    background-color: #FFFFFF;
+    padding: 45px;
+    border-radius: 25px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    margin-bottom: 40px;
+}
+
+
+/* Card producto */
+.card-producto {
+    border: none;
+    border-radius: 18px;
+    background-color: #FFFFFF;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+
+.card-producto:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 14px 30px rgba(0,0,0,0.12);
+}
+
+
+/* Imagen */
+.contenedor-imagen {
+    height: 200px;
+    background-color: #EAEAEA;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.contenedor-imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* Body de card */
+.card-body {
+    padding: 20px;
+}
+
+/* Nombre producto */
+.card-title {
+    color: #1f1f1f;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+/* Precio */
+.precio-producto {
+    font-size: 1.35rem;
+    font-weight: bold;
+    color: #008000;
+    margin-bottom: 12px;
+}
+
+/* Descripción */
+.card-text {
+    color: #666;
+    font-size: 0.95rem;
+}
+
+
+/* Botón agregar */
+.btn-success {
+    background-color: #F4C542 !important;
+    border: none !important;
+    color: black !important;
+    font-weight: 600;
+    border-radius: 12px;
+    padding: 10px;
+    transition: all 0.3s ease;
+}
+
+.btn-success:hover {
+    background-color: #e7b92f !important;
+    transform: scale(1.02);
+}
+
+/* Producto agotado */
+.text-danger {
+    color: #b02a37 !important;
+    background: #ffe5e8;
+    padding: 8px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+
+/* -------------- Estilos para la vista agrandada del producto en catalogo */
+/* ---------- Estilos para la Vista Agrandada (Detalle del Producto) */
+
+/* Botón para regresar */
+.btn-volver {
+    display: inline-block;
+    color: #008000;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    transition: 0.3s ease;
+}
+
+.btn-volver:hover {
+    color: #006600;
+    transform: translateX(-5px); /* Pequeño efecto de movimiento hacia la izquierda */
+}
+
+/* Contenedor principal de la vista */
+/* Agrega esto a tu style.css */
+.enlance-agrandada {
+    text-decoration: none !important;
+    color: inherit !important;
+}
+
+/* Opcional: Si quieres que al pasar el mouse siga sin subrayarse */
+.enlance-agrandada:hover {
+    text-decoration: none !important;
+    color: inherit !important;
+}
+
+.contenedor-agrandada {
+    background-color: #FFFFFF;
+    padding: 45px;
+    border-radius: 25px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+/* Sección de la imagen */
+.columna-imagen {
+    flex: 1;
+    min-width: 300px;
+    background-color: #EAEAEA;
+    border-radius: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding: 20px;
+}
+
+.columna-imagen img {
+    max-width: 100%;
+    max-height: 400px;
+    object-fit: contain;
+    transition: transform 0.4s ease;
+}
+
+.columna-imagen img:hover {
+    transform: scale(1.05); /* Efecto zoom suave en la imagen */
+}
+
+/* Sección de la información del producto */
+.columna-info {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Etiqueta de la categoría */
+.badge-categoria {
+    background-color: #A8D08D;
+    color: #1f1f1f;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    align-self: flex-start;
+    margin-bottom: 15px;
+}
+
+.titulo-proveedor{
+    color: #1f1f1f;
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+/* Título y precio */
+.titulo-agrandado {
+    color: #1f1f1f;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.precio-agrandado {
+    color: #008000;
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Descripción */
+.descripcion-agrandada {
+    color: #666;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    background: #fdfdfd;
+    padding: 20px;
+    border-left: 4px solid #A8D08D;
+    border-radius: 0 15px 15px 0;
+}
+
+/* Botón de compra específico de esta vista */
+.btn-comprar-agrandado {
+    background-color: #F4C542;
+    color: black;
+    border: none;
+    font-weight: 700;
+    font-size: 1.2rem;
+    padding: 15px 30px;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn-comprar-agrandado:hover {
+    background-color: #e7b92f;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(244, 197, 66, 0.4);
+}
+
+
+
+/* -------------- Estilos para el carrito */
+/* Contenedor */
+.contenedor-carrito {
+    background: white;
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+}
+
+/* Título */
+.titulo-carrito {
+    color: #008000;
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+/* Tabla */
+.tabla-carrito thead {
+    background-color: #A8D08D;
+}
+
+.tabla-carrito th {
+    color: #1f1f1f;
+}
+
+/* Inputs */
+.cantidad-input {
+    width: 90px;
+    border-radius: 10px;
+}
+
+/* Subtotal */
+.subtotal {
+    color: #008000;
+    font-weight: bold;
+}
+
+/* Botones */
+.btn-seguir {
+    background: #A8D08D;
+    color: black;
+}
+
+.btn-actualizar {
+    background: #F4C542;
+    border: none;
+}
+
+.btn-eliminar {
+    background: #dc3545;
+    color: white;
+}
+
+.btn-vaciar {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-checkout {
+    background: #008000;
+    color: white;
+}
+
+/* Total */
+.resumen-carrito h3 span {
+    color: #008000;
+}
+
+/* Carrito vacío */
+.carrito-vacio {
+    text-align: center;
+    padding: 60px;
+    background: #EAEAEA;
+    border-radius: 20px;
+}
+
+
+
+/* ---------- Estilos para el checkout */
+.contenedor-checkout {
+    background: #FFFFFF;
+    padding: 45px;
+    border-radius: 25px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+}
+
+.titulo-checkout {
+    color: #008000;
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.checkout-card {
+    background: #FFFFFF;
+    padding: 35px;
+    border-radius: 20px;
+    border: 1px solid #EAEAEA;
+}
+
+.seccion-checkout {
+    color: #008000;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+
+/* Formularios generados por Django */
+.checkout-form p {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
+}
+
+.checkout-form label {
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #333;
+}
+
+.checkout-form input,
+.checkout-form select,
+.checkout-form textarea {
+    padding: 12px;
+    border: 1px solid #d8d8d8;
+    border-radius: 12px;
+    outline: none;
+    transition: 0.3s ease;
+}
+
+.checkout-form input:focus,
+.checkout-form select:focus,
+.checkout-form textarea:focus {
+    border-color: #A8D08D;
+    box-shadow: 0 0 0 4px rgba(168,208,141,0.2);
+}
+
+
+/* Resumen lateral */
+.resumen-checkout {
+    background: #F8F9FA;
+    padding: 30px;
+    border-radius: 20px;
+    position: sticky;
+    top: 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+.resumen-checkout h4 {
+    color: #008000;
+    font-weight: 700;
+}
+
+.item-resumen {
+    background: white;
+    padding: 16px;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+}
+
+.item-resumen h6 {
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.item-resumen p {
+    margin: 0;
+    color: #666;
+}
+
+.resumen-checkout h3 {
+    font-weight: 700;
+}
+
+.resumen-checkout span {
+    color: #008000;
+}
+
+/* Botones */
+.btn-pagar {
+    background: #008000;
+    color: white;
+    padding: 12px 28px;
+    border-radius: 12px;
+    font-weight: 600;
+}
+
+.btn-pagar:hover {
+    background: #006600;
+    color: white;
+}
+
+.btn-regresar {
+    background: #F4C542;
+    color: black;
+    padding: 12px 28px;
+    border-radius: 12px;
+    font-weight: 600;
+}
+
+.btn-regresar:hover {
+    background: #e7b92f;
+}
+
+
+
+/* ---------- Estilos para el Detalle del Pedido */
+.contenedor-pedido {
+    background: #FFFFFF;
+    padding: 45px;
+    border-radius: 25px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+}
+
+/* Header */
+.header-pedido {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.titulo-pedido {
+    color: #008000;
+    font-size: 2.3rem;
+    font-weight: 700;
+}
+
+/* Cards horizontales superiores */
+.info-pedido-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 30px;
+}
+
+.card-info-pedido {
+    background: #F8F9FA;
+    padding: 22px;
+    border-radius: 18px;
+    border-left: 5px solid #A8D08D;
+}
+
+.card-info-pedido small {
+    color: #666;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.card-info-pedido h5 {
+    margin: 0;
+    font-weight: 700;
+}
+
+/* Estado */
+.badge-estado {
+    background: #008000;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* Dirección */
+.card-direccion {
+    background: #F8F9FA;
+    padding: 30px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+}
+
+.card-direccion h4 {
+    color: #008000;
+    margin-bottom: 18px;
+}
+
+/* Productos */
+.productos-box {
+    background: white;
+}
+
+.producto-resumen {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #F8F9FA;
+    padding: 20px;
+    border-radius: 18px;
+    margin-bottom: 15px;
+}
+
+.producto-info h6 {
+    margin: 0;
+    font-weight: 700;
+}
+
+.producto-info small {
+    color: #777;
+}
+
+.producto-precio {
+    color: #008000;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+/* Total */
+.total-pedido-box {
+    margin-top: 25px;
+    background: #A8D08D;
+    padding: 22px 28px;
+    border-radius: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.total-pedido-box h3,
+.total-pedido-box h4 {
+    margin: 0;
+    font-weight: 700;
+}
+
+/* Alerta */
+.alerta-exito {
+    margin-top: 25px;
+    background: #eef9e9;
+    border-left: 5px solid #008000;
+    padding: 25px;
+    border-radius: 16px;
+}
