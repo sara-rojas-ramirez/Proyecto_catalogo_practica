@@ -46,16 +46,19 @@
 
             {% if pedido.checkout %}
                 <p>
-                    <strong>Departamento:</strong> {{ pedido.checkout.departamento.nombre }}
+                    <strong>Departamento: </strong> {{ pedido.checkout.departamento.nombre }}
                 </p>
                 <p>
-                    <strong>Municipio:</strong> {{ pedido.checkout.municipio.nombre }}
+                    <strong>Municipio: </strong> {{ pedido.checkout.municipio.nombre }}
                 </p>
                 <p>
-                    <strong>Barrio o Sector:</strong> {{ pedido.checkout.barrio.nombre }}
+                    <strong>Barrio o Sector: </strong> {{ pedido.checkout.barrio.nombre }}
                 </p>
                 <p>
-                    <strong>Dirección:</strong> {{ pedido.checkout.direccion }}
+                    <strong>Dirección: </strong> {{ pedido.checkout.direccion }}
+                </p>
+                <p>
+                    <strong>Observaciones: </strong> {{ pedido.checkout.observaciones_adicionales }}
                 </p>
             {% else %}
                 <p class="text-muted">No se registró información de envío.</p>

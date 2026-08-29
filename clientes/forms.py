@@ -1,11 +1,15 @@
 
-# Importanciones esenciales 
+# Importanciones:
+# Importar el módulo de forms
+# Del módulo nativo de Django de autenticación trae el Usuario
+# Del modelo tarea cliente
 from django import forms 
 from django.contrib.auth.models import User
 from .models import Cliente
 
 
-# Formulario forms
+# Formulario RegistroForm
+# Define los siguientes campos: 
 class RegistroForm(forms.Form):
     # Campo de username
     username = forms.CharField(
@@ -53,7 +57,7 @@ class RegistroForm(forms.Form):
     )
 
 
-    # Validaciones basicas del registro
+    # Incluye validaciones basicas del registro
     # Validar nombre de usuario
     def clean_username(self):
         username = self.cleaned_data['username']
@@ -61,7 +65,7 @@ class RegistroForm(forms.Form):
         if User.objects.filter(username = username).exists():
             raise forms.ValidationError("Este usuario ya existe.")
         return username
-
+        
     # Validar telefono
     def clean_telefono(self):
         telefono = self.cleaned_data['telefono']

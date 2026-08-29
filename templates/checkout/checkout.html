@@ -11,7 +11,8 @@
                 <div class="checkout-card">
                     <form method="POST" id="checkout-form" 
                           data-url-municipios="{% url 'ajax_cargar_municipios' %}"
-                          data-url-barrios="{% url 'ajax_cargar_barrios' %}">
+                          data-url-barrios="{% url 'ajax_cargar_barrios' %}"
+                          data-url-tarifa="{% url 'calcular_tarifa_ajax' %}">
                         {% csrf_token %}
 
                         <h3 class="seccion-checkout">Información de envío</h3>
@@ -45,7 +46,12 @@
                     {% endfor %}
 
                     <hr>
-                    <h3>Total: <span>${{ total }}</span></h3>
+                    <h5>Total productos: $<span id="total-productos" data-total="{{ total }}">{{ total }}</span></h5>
+                    
+                    <h5>Costo de envío: $<span id="costo-envio">0.00</span></h5>
+                    
+                    <hr>
+                    <h3>Total a pagar: $<span id="total-final">{{ total }}</span></h3>
                 </div>
             </div>
 

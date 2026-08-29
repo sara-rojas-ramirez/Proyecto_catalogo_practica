@@ -1,0 +1,9 @@
+Aplicación o sección accounts
+
+1. models: no contiene models.py debido a que se uso el sistema de autenticación integrado de django (django.contrib.auth) y esto genera automaticamente el usuario con username, password, email, is_staff y is_active
+
+2. urls: es el enrutador y su trabajo es escuchar lo que el usuario escribe en el nav. No recibe los datos de la petición ni si la contraseña es valida, solo redirige el trafico.
+
+3. forms: define que datos se van a pedir y como se deben ver en la pantalla. Define el campo de texto username y el campo oculto de password, ambos con estilos de Bootstrap.
+
+4. views: recibe la orden de la URL, usa el formulario para revisar los datos, procesa la lógica y decide que responder al usuario (si redige a dashboard, catalogo o login si da error)

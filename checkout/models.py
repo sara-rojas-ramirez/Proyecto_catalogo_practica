@@ -13,27 +13,27 @@ from clientes.models import Cliente
 # Esta separación mejora la organización y escalabilidad del sistema.
 
 
-
-# =========================
-# MODELOS GEOGRÁFICOS
-# =========================
+# ------ MODELOS GEOGRÁFICOS
 
 # Este modelo representa un departamento (ej: Risaralda, Antioquia, Valle del Cauca).
 # Se usa para estructurar la dirección de envío jerárquicamente.
 class Departamento(models.Model):
 
     # Campo de texto para almacenar el nombre del departamento.
-    # unique=True evita que se repita el mismo nombre.
     nombre = models.CharField(max_length=50, unique=True)
 
-    # Define cómo se mostrará el objeto en el panel admin o en consultas.
+    costo_envio = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        default=15000.00,
+        help_text="Costo de envio estándar para este departamento."
+    )
+
     def __str__(self):
         return self.nombre
     
 
-
 # Este modelo representa un municipio que pertenece a un departamento.
-# Ejemplo: Pereira pertenece a Risaralda.
 class Municipio(models.Model):
 
     # Relación muchos-a-uno:
@@ -44,7 +44,6 @@ class Municipio(models.Model):
         related_name='municipios'
     )
 
-    # Nombre del municipio
     nombre = models.CharField(max_length=50)
 
     # Restricción para evitar municipios duplicados dentro del mismo departamento.
@@ -55,14 +54,12 @@ class Municipio(models.Model):
     class Meta:
         unique_together = ('departamento', 'nombre')
 
-    # Representación legible del municipio.
     def __str__(self):
         return f"{self.nombre} ({self.departamento.nombre})"
 
 
 
 # Este modelo representa un barrio dentro de un municipio.
-# Ejemplo: Cuba pertenece a Pereira.
 class Barrio(models.Model):
 
     # Un municipio puede tener muchos barrios.
@@ -72,21 +69,18 @@ class Barrio(models.Model):
         related_name='barrios'
     )
 
-    # Nombre del barrio
     nombre = models.CharField(max_length=50)
 
-    # Representación legible
     def __str__(self):
         return self.nombre
 
 
 
-# =========================
-# MODELO CHECKOUT
-# =========================
+
+# -------- MODELO CHECKOUT
 
 # Este modelo representa el proceso de checkout:
-# cuando el usuario confirma la compra y registra su dirección de entrega.
+# Cuando el usuario confirma la compra y registra su dirección de entrega.
 class Checkout(models.Model):
 
     # Relación con el cliente que realiza la compra.
@@ -122,22 +116,19 @@ class Checkout(models.Model):
         blank=True
     )
 
-    # Dirección exacta del cliente.
-    # Ejemplo: Calle 10 #15-20 apto 302
     direccion = models.CharField(max_length=50)
 
-    # Fecha automática de creación del checkout.
+    observaciones_adicionales = models.TextField(blank=True, null=True)
+
     fecha = models.DateTimeField(auto_now_add=True)
 
-    # Representación legible del checkout.
     def __str__(self):
         return f"Checkout #{self.id} - {self.cliente}"
 
 
 
-# =========================
-# MODELO PAGO
-# =========================
+
+# ------- MODELO PAGO
 
 # Este modelo almacena la información del pago realizado.
 class Pago(models.Model):
@@ -186,7 +177,6 @@ class Pago(models.Model):
 
     # Fecha en que se registró el pago.
     fecha_pago = models.DateTimeField(auto_now_add=True)
-
-    # Representación legible del pago.
+    
     def __str__(self):
         return f"Pago {self.referencia}"

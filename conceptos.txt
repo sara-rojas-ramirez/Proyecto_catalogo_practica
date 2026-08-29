@@ -5,22 +5,32 @@
 2. Arreglar el boton de agregar producto, para que no redireccione a carrito, solo que agregue.
 3. Registrar los modelos del checkout en admin. (SE REALIZO)
 4. Habilitar los filtros en catalogo para filtrar por categoria. (SE AÑADIERON FILTROS BASICOS POR CATEGORIA)
-5. Mejorar el formulario de checkout
-6. Hacer la ventana modal o vista agradada del producto (SE REALIZO LA VISTA AGRANDADA)
+5. Mejorar el formulario de checkout (SE AGREGO SELECTS EN CASCADA, SOLO FALTA SECCIÓN DE PAGO CON PASARELA)
+6. Hacer la ventana modal o vista agradada del producto (SE REALIZO LA VISTA AGRANDADA) 
 7. Hacer el perfil de cliente para ver su historial de pedidos y estados. 
+8. Permitir que el catalogo se pueda ver sin estar logueados.
 
 # PRIORIDAD MEDIA
 1. Agregar las opciones de departamento, municipio y barrio en cascada para formulario de compra (YA SE CREO CON FUNCIONALIDAD AJAX)
 2. Agregar validaciones para los formularios con JS y ajax.
 3. Agregar imagenes precargadas para los productos. (YA SE REALIZO LA FUNCIONALIDAD Y LAS IMAGENES SE GUARDAN AUTOMATICAMENTE EN LA CARPETA MEDIA/ AL MOMENTO DE AGREGAR LA IMAGEN POR MEDIO DE ADMIN DJANGO)
 4. Agregar los datos de barrios y municipios segun departamentos. (SE CREO UN ARCHIVO JSON Y UN ARCHIVO CARGAR_GEO.PY PARA CARGAR ESE ARCHIVO JSON)
-5. Generar la funcionalidad para tarifa del domicilio por municipio, entonces agregar tarifa en el modelo municipio
+5. Generar la funcionalidad para tarifa del domicilio por municipio, entonces agregar tarifa en el modelo municipio. (ESTA EN PROCESO)
+6. En la vista agradanda del producto, agrega icono con flecha para ver productos similares o pasar a otro. 
 
 
 # PRIORIDAD BAJA
 1. Mejorar los estilos generales, agregar css tambien
 2. Mejorar el estilo de los formularios
 3. Comentar el codigo y legibilidad en variables y sintaxis
+
+
+# MODIFICACIONES AL FINAL
+1. Modificar el sitio web para forros sanchez, esto implica cambiar los filtros actuales por unos nuevos y mas intuitivos, filtrando por los diferentes productos y todos sus tipos y marcas (cascos, forros, sabanas, estampados, etc.)
+2. Modificar las imagenes de inicio de sesion y de registro al igual que el banner. 
+3. Modificar los campos de algunas entidades para hacerlos mas completos y realistas (por ejemplo, el de proveedor)
+ 
+
 
 
 
@@ -92,3 +102,39 @@ Permite interactividad sin refresh. En otras palabras, es una tecnica para que u
 
 # LIBRERIA PILLOW
 Es necesario instalar esta libreria para que django pueda procesar las imagenes. pip install pillow
+
+
+
+
+
+# CONCEPTOS
+1. django.shortcuts: módulo de Django con funciones tipo atajo para tareas como: render() y redirect()
+
+-- Render recibe como paremtros: render(request, template, context)
+Por ejemplo: return render(request, 'accounts/login.html, {'form': form}) y lo que hace es lo siguiente: recibe la petición, carga el HTML y le envia variables (form), gracias a eso, puedo usar {{ form }}
+en el HTML por que lo mande en el context.
+
+
+2. django.http: maneja respuestas HTTP.
+HTTP es el protocolo navegador <--> servidor, esto indica que cuando se visita una página, el navegador realiza una petición HTTP y el servidor responde con HTML, JSON, images, etc.
+
+
+3. django.contrib.auth: es el sistema de autenticación de Django.
+Incluye usuarios, contraseñas, permisos, sesiónes, login y logout.
+
+
+4. request: es un objeto que representa la solicitud HTTP que hace un cliente o app al servidor. Existen los siguientes atributos:
+
+-- request.method: método HTTP, sea GET, POST, PUT...
+-- request.GET: parámetros enviados en la URL
+-- request.POST: datos enviados en el cuerpo de la solicitud
+-- request.body: solicitud en bytes
+-- request.user: usuario autenticado
+-- request.session: datos de sesión del usuario
+-- request.FILES: archivos subidos
+-- request.COOKIES: cookies enviados por el cliente
+
+
+5. django.bd: 
+
+

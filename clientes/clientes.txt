@@ -1,0 +1,18 @@
+Modulo clientes
+
+- clientes/init.py: marca el directorio como un paquete de Python.
+
+- clientes/admin.py: registra y define como se verán los modelo de clietes en el panel de administración en Django.
+
+- clientes7apps.py: configura la app clientes como una aplicación del proyecto.
+
+- clientes/forms.py: contiene los formularios de Django para el registro de usuarios y validaciones como: usuario repetido, correo válido, teléfono ya registrado y contraseñas que coinciden.
+
+- clientes/models.py: define la estructura de datos del modelo Cliente.
+
+- clientes/views.py: contiene la lógica de negocio para registrar usuarios, en este caso, recibe los datos del formulario, los valida y crea el usuario y el cliente. 
+
+- clientes/tests.py: sirve para pruebas automaticas del funcionamiento de la app. (mas adelante)
+
+- clientes/migrations/: guarda los cambios en la bd relacionados con los modelos de clientes.
+

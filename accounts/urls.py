@@ -1,6 +1,5 @@
 # Definir las URLS del módulo accounts
-# Deben de conectarse estas urls con elas ulrs principales
-
+# Deben de conectarse estas urls con las ulrs principales
 from django.urls import path
 from . import views
 from clientes.views import registroView
@@ -13,7 +12,7 @@ urlpatterns = [
      # path('admin/', admin.site.urls, name = 'admin'),
 
      # Rutas ajax
-     path('ajax/login/', views.login_ajax, name = 'ajax_login')
+     # path('ajax/login/', views.login_ajax, name = 'ajax_login')
 ]
 
 

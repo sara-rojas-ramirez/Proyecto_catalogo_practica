@@ -1,0 +1,7 @@
+Aplicación o sección catalogo
+
+1. models: esto define la base de datos, por lo tanto, se crean las tablas y relaciones. Se creo proveedores, catalogo y producto.
+
+2. views: manejo la lógica, por lo tanto, define que pasa cuando el usuario entra al catalogo. catalogo_view que se encarga de verificar login, consultar la bd, filtrar por categoria y enviar datos al HTML. vista_agrandada:view que recibe un producto_id, lo busca, si existe muestra la página detallada, si no, envia error 404.
+
+3. urls: conecta las rutas con las vistas. 

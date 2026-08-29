@@ -6,12 +6,13 @@ class CheckoutForm(forms.ModelForm):
     class Meta:
         model = Checkout
         # Incluimos los tres campos geográficos
-        fields = ['departamento', 'municipio', 'barrio', 'direccion']
+        fields = ['departamento', 'municipio', 'barrio', 'direccion', 'observaciones_adicionales']
         widgets = {
             'departamento': forms.Select(attrs={'class': 'form-select', 'id': 'id_departamento'}),
             'municipio': forms.Select(attrs={'class': 'form-select', 'id': 'id_municipio'}),
             'barrio': forms.Select(attrs={'class': 'form-select', 'id': 'id_barrio'}),
             'direccion': forms.TextInput(attrs={'class': 'form-control'}),
+            'observaciones_adicionales': forms.TextInput(attrs={'class': 'form-control'})
         }
 
     def __init__(self, *args, **kwargs):

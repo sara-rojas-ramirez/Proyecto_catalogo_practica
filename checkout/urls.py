@@ -7,7 +7,11 @@ urlpatterns = [
 
      # Rutas AJAX para la cascada
      path('ajax/cargar-municipios/', views.cargar_municipios, name='ajax_cargar_municipios'),
-     path('ajax/cargar-barrios/', views.cargar_barrios, name='ajax_cargar_barrios')
+     path('ajax/cargar-barrios/', views.cargar_barrios, name='ajax_cargar_barrios'),
+
+     # Rutas AJAX para tarifa automatica
+     path('calcular-tarifa-ajax/', views.calcular_tarifa_ajax, name='calcular_tarifa_ajax')
+
 ]
 
  

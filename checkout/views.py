@@ -8,7 +8,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 
 # Importamos los modelos principales del módulo checkout.
-from .models import Checkout, Pago
+from .models import Checkout, Pago, Departamento, Municipio, Barrio
 
 # Importamos el modelo del carrito para acceder a los productos agregados.
 from carrito.models import Carrito
@@ -31,9 +31,7 @@ from .models import Municipio, Barrio
 
 
 
-# =========================
-# VISTA PRINCIPAL CHECKOUT
-# =========================
+# 🌻VISTA PRINCIPAL CHECKOUT
 
 # Esta vista controla todo el proceso de checkout:
 # 1. Verifica usuario autenticado
@@ -79,15 +77,22 @@ def checkout_view(request):
             # Asignamos el cliente automáticamente.
             checkout.cliente = cliente
 
+
+            # ---- CALCULO DE LA TARIFA AUTOMATICO DESDE LA BD
+
+            if checkout.departamento:
+                # Trae directamente el costo que configuraste en el panel de administración
+                checkout.tarifa = checkout.departamento.costo_envio
+            else:
+                checkout.tarifa = 0.00  # O una tarifa de contingencia
+
+
             # Ahora sí guardamos en la base de datos.
             checkout.save()
 
 
-
-            # =========================
-            # CREACIÓN DEL PEDIDO
-            # =========================
-
+    
+            # ---- CREACIÓN DEL PEDIDO
             # Se crea un pedido con estado pendiente.
             pedido = Pedido.objects.create(
                 cliente=cliente,
@@ -95,10 +100,8 @@ def checkout_view(request):
                 estado="Pagado"
             )
 
-            # =========================
-            # CREACIÓN DE DETALLES DEL PEDIDO
-            # =========================
 
+            # ---- CREACIÓN DE DETALLES DEL PEDIDO
             # Recorremos cada item del carrito.
             for item in items_carrito:
 
@@ -110,10 +113,9 @@ def checkout_view(request):
                     cantidad=item.cantidad
                 )
 
-            # =========================
-            # REGISTRO DEL PAGO
-            # =========================
-
+          
+            # ----- REGISTRO DEL PAGO
+           
             # Guardamos pago temporalmente.
             pago = pago_form.save(commit=False)
 
@@ -132,18 +134,13 @@ def checkout_view(request):
             # Guardamos pago.
             pago.save()
 
-            # =========================
-            # LIMPIAR CARRITO
-            # =========================
 
+            # ---- LIMPIAR CARRITO
             # Como ya compró, eliminamos items del carrito.
             items_carrito.delete()
 
-
-
             # Redireccionamos al detalle del pedido.
             return redirect("detalle_pedido", pedido.id)
-
 
 
     # Si la petición fue GET (solo abrir página)
@@ -154,20 +151,12 @@ def checkout_view(request):
         pago_form = PagoForm()
     
 
-
-    # =========================
-    # CALCULAR TOTAL
-    # =========================
-
+    # ---- CALCULAR TOTAL
     # Suma subtotal de cada producto del carrito.
     total = sum(item.subtotal for item in items_carrito)
 
 
-
-    # =========================
-    # RENDER DEL TEMPLATE
-    # =========================
-
+    # ----- RENDER DEL TEMPLATE
     # Enviamos toda la información al HTML.
     return render(request, "checkout/checkout.html", {
         "checkout_form": checkout_form,
@@ -179,14 +168,9 @@ def checkout_view(request):
 
 
 
-# =========================
-# VISTAS AJAX
-# =========================
 
-# Estas vistas permiten cargar municipios y barrios dinámicamente
-# sin recargar la página completa.
-
-
+# ------ VISTAS AJAX
+# Estas vistas permiten cargar municipios y barrios dinámicamente sin recargar la página completa.
 
 # Vista para obtener municipios según el departamento seleccionado.
 def cargar_municipios(request):
@@ -227,3 +211,19 @@ def cargar_barrios(request):
         list(barrios.values('id', 'nombre')),
         safe=False
     )
+
+
+# Vista AJAX para calculo de la tarifa segun departamento
+def calcular_tarifa_ajax(request):
+    departamento_id = request.GET.get('departamento')
+    tarifa = 15000.00 # Tarifa de respaldo
+    
+    if departamento_id:
+        try:
+            depto = Departamento.objects.get(id=departamento_id)
+            # Obtenemos el valor real configurado en la base de datos
+            tarifa = depto.costo_envio
+        except Departamento.DoesNotExist:
+            pass
+            
+    return JsonResponse({'tarifa': tarifa})
